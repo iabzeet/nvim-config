@@ -12,7 +12,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "jdtls", "quick_lint_js" } -- Ensure desired LSP servers are installed
+                ensure_installed = { "lua_ls", "jdtls", "quick_lint_js", "rust_analyzer" } -- Ensure desired LSP servers are installed
             })
         end
     },
@@ -45,6 +45,24 @@ return {
             -- JavaScript LSP setup (using quick_lint_js)
             lspconfig.quick_lint_js.setup({
                 capabilities = capabilities
+            })
+
+	    -- Rust Analyzer setup
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            allFeatures = true,
+                        },
+                        checkOnSave = {
+                            command = "clippy", -- Use Clippy for linting
+                        },
+                        procMacro = {
+                            enable = true, -- Enable procedural macros
+                        },
+                    },
+                }
             })
         end
     }
