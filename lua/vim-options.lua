@@ -5,3 +5,5 @@ vim.opt.softtabstop = 2   -- Number of spaces per Tab key
 vim.opt.shiftwidth = 2    -- Number of spaces to use for autoindent
 vim.g.mapleader = " "     -- Set leader key
 
+-- for obsidian
+vim.opt.conceallevel = 2
